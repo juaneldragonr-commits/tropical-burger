@@ -22,16 +22,16 @@ export default function Home() {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center pt-10 pb-15 px-4 text-center">
         <h1 className="text-6xl font-extrabold text-burger-brown mb-6">
-          Sabor Tropical en cada bocado
+          Tropical flavor in every bite
         </h1>
         <p className="text-xl text-burger-brown/80 max-w-2xl mb-8">
-          Hamburguesas gourmet hechas con ingredientes frescos, piña asada y el toque secreto que nos hace únicos.
+          Gourmet burgers made with fresh ingredients, grilled pineapple and the secret touch that makes us unique.
         </p>
         <button 
           onClick={scrollToMenu}
           className="bg-tropical-orange text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
         >
-          Ver Menú
+          View Menu
         </button>
       </section>
 

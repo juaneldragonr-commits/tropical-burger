@@ -7,22 +7,22 @@ const Footer = () => {
         <div>
           <h3 className="text-xl font-bold mb-4">Tropical Burger</h3>
           <p className="text-sm opacity-80">
-            Sabor auténtico, ingredientes frescos y una experiencia inolvidable.
+            Authentic flavor, fresh ingredients and an unforgettable experience.
           </p>
         </div>
         <div>
-          <h3 className="text-xl font-bold mb-4">Horarios</h3>
-          <p className="text-sm opacity-80">Lun - Vie: 11:00 AM - 10:00 PM</p>
-          <p className="text-sm opacity-80">Sáb - Dom: 12:00 PM - 11:00 PM</p>
+          <h3 className="text-xl font-bold mb-4">Hours</h3>
+          <p className="text-sm opacity-80">Mon - Fri: 11:00 AM - 10:00 PM</p>
+          <p className="text-sm opacity-80">Sat - Sun: 12:00 PM - 11:00 PM</p>
         </div>
         <div>
-          <h3 className="text-xl font-bold mb-4">Contacto</h3>
+          <h3 className="text-xl font-bold mb-4">Contact</h3>
           <p className="text-sm opacity-80">Bogotá, Colombia</p>
           <p className="text-sm opacity-80">hola@tropicalburger.com</p>
         </div>
       </div>
       <div className="text-center mt-10 pt-6 border-t border-cream-white/20 text-xs opacity-60">
-        © 2026 Tropical Burger. Todos los derechos reservados.
+        © 2026 Tropical Burger. All rights reserved.
       </div>
     </footer>
   );
