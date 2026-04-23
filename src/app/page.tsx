@@ -38,12 +38,12 @@ export default function Home() {
       {/* Contenedor principal: Flexbox para alinear Menú y Pedido */}
       <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-8 py-10">
         
-        {/* Columna izquierda: Menú (Asignamos la referencia aquí) */}
+        {/* Columna izquierda: Menu (Asignamos la referencia aquí) */}
         <div ref={menuRef} className="flex-1">
           <MenuSection />
         </div>
 
-        {/* Columna derecha: Tu Pedido (Sidebar) */}
+        {/* Columna derecha: Your Order (Sidebar) */}
         <aside className="lg:w-80 w-full flex-shrink-0">
           <div className="lg:sticky lg:top-28">
             <CartSummary />

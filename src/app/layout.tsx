@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tropical Burger",
-  description: "Hamburguesas gourmet con sabor tropical",
+  title: "Tropical Burger 🍔",
+  description: "Gourmet burgers with a tropical flavor",
 };
 
 export default function RootLayout({

@@ -41,9 +41,9 @@ const CartSummary = () => {
     return (
       <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 w-full animate-in fade-in duration-500 text-center flex flex-col items-center gap-6">
         <div className="text-6xl">🌴🛵✨</div>
-        <h3 className="font-bold text-3xl text-burger-brown">¡Orden en camino!</h3>
+        <h3 className="font-bold text-3xl text-burger-brown">Order on its way!</h3>
         <p className="text-xl text-gray-700 bg-cream-white p-4 rounded-xl border border-burger-brown/10">
-          Tu <span className="font-bold text-tropical-orange">Orden Tropical</span> llegará pronto.
+          Your <span className="font-bold text-tropical-orange">Tropical Order</span> will arrive soon.
         </p>
         <button 
           onClick={() => {
@@ -55,7 +55,7 @@ const CartSummary = () => {
           }}
           className="mt-4 w-full bg-burger-brown text-white py-3 rounded-xl font-bold hover:bg-orange-700 transition-all hover:scale-105"
         >
-          Volver al Menú
+          Back to Menu
         </button>
       </div>
     );
@@ -65,7 +65,7 @@ const CartSummary = () => {
   if (isCheckout) {
     return (
       <div className="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-gray-100 w-full animate-in fade-in duration-300">
-        <h3 className="font-bold text-xl mb-6 text-burger-brown">Datos de Envío 🛵</h3>
+        <h3 className="font-bold text-xl mb-6 text-burger-brown">Shipping Details 🛵</h3>
         
         <div className="space-y-5">
           <div>
@@ -76,10 +76,10 @@ const CartSummary = () => {
                 setName(e.target.value);
                 if (errors.name) setErrors({...errors, name: false});
               }}
-              placeholder="Nombre completo" 
+              placeholder="Full Name" 
               className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-500 bg-red-50' : 'border-gray-200'} focus:border-tropical-orange focus:ring-2 focus:ring-tropical-orange/20 transition-all outline-none text-gray-800`}
             />
-            {errors.name && <p className="text-red-500 text-xs mt-1 ml-2">Mínimo 3 caracteres</p>}
+            {errors.name && <p className="text-red-500 text-xs mt-1 ml-2">Minimum 3 characters</p>}
           </div>
 
           <div>
@@ -90,16 +90,16 @@ const CartSummary = () => {
                 setAddress(e.target.value);
                 if (errors.address) setErrors({...errors, address: false});
               }}
-              placeholder="Dirección de entrega" 
+              placeholder="Delivery Address" 
               className={`w-full px-4 py-3 rounded-xl border ${errors.address ? 'border-red-500 bg-red-50' : 'border-gray-200'} focus:border-tropical-orange focus:ring-2 focus:ring-tropical-orange/20 transition-all outline-none text-gray-800`}
             />
-            {errors.address && <p className="text-red-500 text-xs mt-1 ml-2">Mínimo 5 caracteres</p>}
+            {errors.address && <p className="text-red-500 text-xs mt-1 ml-2">Minimum 5 characters</p>}
           </div>
         </div>
 
         <div className="flex gap-3 mt-8">
-          <button onClick={() => setIsCheckout(false)} className="flex-1 bg-gray-100 text-gray-600 py-3 rounded-xl font-medium hover:bg-gray-200 transition-all">Atrás</button>
-          <button onClick={handleConfirmOrder} className="flex-[2] bg-gradient-to-r from-tropical-orange to-orange-600 text-white py-3 rounded-xl font-bold hover:scale-105 transition-all">Confirmar</button>
+          <button onClick={() => setIsCheckout(false)} className="flex-1 bg-gray-100 text-gray-600 py-3 rounded-xl font-medium hover:bg-gray-200 transition-all">Back</button>
+          <button onClick={handleConfirmOrder} className="flex-[2] bg-gradient-to-r from-tropical-orange to-orange-600 text-white py-3 rounded-xl font-bold hover:scale-105 transition-all">Confirm</button>
         </div>
       </div>
     );
@@ -109,7 +109,7 @@ const CartSummary = () => {
   return (
     <div className="bg-burger-brown text-white p-6 md:p-8 rounded-3xl shadow-xl w-full transition-all">
       <h3 className="font-bold text-xl mb-5 flex justify-between items-center border-b border-white/10 pb-4">
-        Tu Pedido 🍔
+        Your Order 🍔
         <div className="flex items-center gap-3">
           <span className="bg-tropical-orange text-xs px-3 py-1 rounded-full font-mono">{cart.length}</span>
           {/* Botón para cerrar el panel manualmente */}
@@ -143,7 +143,7 @@ const CartSummary = () => {
         onClick={() => setIsCheckout(true)}
         className="w-full bg-tropical-orange text-white py-3.5 rounded-xl font-bold hover:bg-orange-600 transition-all hover:shadow-lg active:scale-95 text-lg"
       >
-        Finalizar Pedido
+        Finalize order
       </button>
     </div>
   );

@@ -40,7 +40,7 @@ const BurgerCard = ({ name, description, price }: BurgerProps) => {
               : 'bg-burger-brown hover:bg-orange-700 hover:scale-105' // Estado normal
           } text-white`}
         >
-          {isAdding ? '¡Agregado! 🍔' : 'Pedir'}
+          {isAdding ? 'Added! 🍔' : 'Order'}
         </button>
       </div>
     </div>

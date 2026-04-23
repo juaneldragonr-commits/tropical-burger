@@ -17,7 +17,7 @@ const Footer = () => {
         </div>
         <div>
           <h3 className="text-xl font-bold mb-4">Contact</h3>
-          <p className="text-sm opacity-80">Bogotá, Colombia</p>
+          <p className="text-sm opacity-80">Bogota, Colombia</p>
           <p className="text-sm opacity-80">hola@tropicalburger.com</p>
         </div>
       </div>
