@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 
 const CartSummary = () => {
-  // Ajuste: Consumimos isCartVisible y setIsCartVisible del contexto
   const { cart, removeItem, clearCart, isCartVisible, setIsCartVisible } = useCart(); 
   
   const [isCheckout, setIsCheckout] = useState(false);
@@ -13,13 +12,19 @@ const CartSummary = () => {
   const [address, setAddress] = useState('');
   const [errors, setErrors] = useState({ name: false, address: false });
 
-  // Función para convertir "$15.000" a número 15000
-  const parsePrice = (priceStr: string) => parseInt(priceStr.replace(/[^0-9]/g, ''));
-  const total = cart.reduce((acc, item) => acc + parsePrice(item.price), 0);
-
   // --- LÓGICA DE VISIBILIDAD ---
   // Si el carrito no debe ser visible, o si está vacío y no estamos en confirmación, no renderizamos nada
   if (!isCartVisible || (cart.length === 0 && !isOrderConfirmed)) return null;
+
+  // --- LÓGICA DE PRECIOS Y TOTAL ---
+  // Función para convertir "$15 USD" a número 15
+  const parsePrice = (priceStr: string) => {
+    // Eliminamos cualquier cosa que no sea un dígito o el punto decimal
+    return parseFloat(priceStr.replace(/[^0-9.]/g, ''));
+  };
+
+  // Calculamos el subtotal numérico
+  const subtotal = cart.reduce((acc, item) => acc + parsePrice(item.price), 0);
 
   // --- LÓGICA DE VALIDACIÓN ---
   const handleConfirmOrder = () => {
@@ -41,7 +46,7 @@ const CartSummary = () => {
     return (
       <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 w-full animate-in fade-in duration-500 text-center flex flex-col items-center gap-6">
         <div className="text-6xl">🌴🛵✨</div>
-        <h3 className="font-bold text-3xl text-burger-brown">Order on its way!</h3>
+        <h3 className="font-bold text-3xl text-burger-brown">Order on its Way!</h3>
         <p className="text-xl text-gray-700 bg-cream-white p-4 rounded-xl border border-burger-brown/10">
           Your <span className="font-bold text-tropical-orange">Tropical Order</span> will arrive soon.
         </p>
@@ -55,19 +60,20 @@ const CartSummary = () => {
           }}
           className="mt-4 w-full bg-burger-brown text-white py-3 rounded-xl font-bold hover:bg-orange-700 transition-all hover:scale-105"
         >
-          Back to Menu
+          Return to Menu
         </button>
       </div>
     );
   }
 
-  // --- PANTALLA 2: DATOS DE ENVÍO ---
+  // --- PANTALLA 2: DATOS DE ENVÍO (CHECKOUT) ---
   if (isCheckout) {
     return (
       <div className="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-gray-100 w-full animate-in fade-in duration-300">
         <h3 className="font-bold text-xl mb-6 text-burger-brown">Shipping Details 🛵</h3>
         
         <div className="space-y-5">
+          {/* Campo Nombre (Username) */}
           <div>
             <input 
               type="text" 
@@ -79,21 +85,23 @@ const CartSummary = () => {
               placeholder="Full Name" 
               className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-500 bg-red-50' : 'border-gray-200'} focus:border-tropical-orange focus:ring-2 focus:ring-tropical-orange/20 transition-all outline-none text-gray-800`}
             />
-            {errors.name && <p className="text-red-500 text-xs mt-1 ml-2">Minimum 3 characters</p>}
+            {errors.name && <p className="text-red-500 text-xs mt-1 ml-2">Min. 3 characters</p>}
           </div>
 
+          {/* Campo Dirección (Ajustado para privacidad si se desea usar como password) */}
           <div>
+            {/* AJUSTE UX 2: type="password" para ocultar la dirección con puntos */}
             <input 
-              type="text" 
+              type="password" 
               value={address}
               onChange={(e) => {
                 setAddress(e.target.value);
                 if (errors.address) setErrors({...errors, address: false});
               }}
-              placeholder="Delivery Address" 
+              placeholder="Delivery Address (Hidden)" 
               className={`w-full px-4 py-3 rounded-xl border ${errors.address ? 'border-red-500 bg-red-50' : 'border-gray-200'} focus:border-tropical-orange focus:ring-2 focus:ring-tropical-orange/20 transition-all outline-none text-gray-800`}
             />
-            {errors.address && <p className="text-red-500 text-xs mt-1 ml-2">Minimum 5 characters</p>}
+            {errors.address && <p className="text-red-500 text-xs mt-1 ml-2">Min. 5 characters</p>}
           </div>
         </div>
 
@@ -122,7 +130,8 @@ const CartSummary = () => {
           <li key={index} className="flex justify-between items-center text-sm border-b border-white/5 pb-3">
             <span>{item.name}</span>
             <div className="flex items-center gap-3">
-              <span className="font-bold text-tropical-orange">{item.price}</span>
+              {/* Ajuste de formato para los ítems también, por consistencia */}
+              <span className="font-bold text-tropical-orange">${parsePrice(item.price).toFixed(2)} USD</span>
               <button 
                 onClick={() => removeItem(index)}
                 className="text-white/50 hover:text-red-400 transition-colors font-bold"
@@ -134,16 +143,18 @@ const CartSummary = () => {
         ))}
       </ul>
 
+      {/* Sección del Total */}
       <div className="border-t border-white/20 pt-4 mb-6 flex justify-between items-center font-bold text-lg">
         <span>Total:</span>
-        <span className="text-2xl text-tropical-orange">${total.toLocaleString('es-CO')}</span>
+        {/* AJUSTE UX 1: Formato de Total profesional con USD */}
+        <span className="text-3xl text-tropical-orange">${subtotal.toFixed(2)} USD</span>
       </div>
 
       <button 
         onClick={() => setIsCheckout(true)}
         className="w-full bg-tropical-orange text-white py-3.5 rounded-xl font-bold hover:bg-orange-600 transition-all hover:shadow-lg active:scale-95 text-lg"
       >
-        Finalize order
+        Finalize Order
       </button>
     </div>
   );
